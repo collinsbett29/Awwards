@@ -23,15 +23,15 @@ class Profile(models.Model):
         return self.username.username
 
 
-def post_save_user_model_receiver(sender, instance, created, *args, **kwargs):
-    if created:
-        try:
-            Profile.objects.create(user=instance)
-        except Exception as error:
-            print(error)
+    def post_save_user_model_receiver(sender, instance, created, *args, **kwargs):
+        if created:
+            try:
+                Profile.objects.create(user=instance)
+            except Exception as error:
+                print(error)
 
 
-post_save.connect(post_save_user_model_receiver,
+        post_save.connect(post_save_user_model_receiver,
                   sender=settings.AUTH_USER_MODEL)
 
 
