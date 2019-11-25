@@ -1,47 +1,30 @@
-{%extends "registration/base.html"%} {% load bootstrap4 %}
+{%extends "registration/base.html"%}
+{% load bootstrap4 %}
+
 {% block content %}
-<div class="container">
-    <div class="row">
-        <!-- Empty div -->
-        <div class="col-md-4"></div>
-        <div class="col-md-4 card">
-            {% if form.errors %}
-            <p> Some Information Might be Incorrect </p>
-            {% endif %}
-            <div class="panel panel-default">
+<div class="row">
+    <div class="col-md-4">
 
-                <div class="panel-heading">
-                    <h3 class="text-center">Sign Up</h3>
-                </div>
-                <div class="panel-heading">
-                    <h1 class="text-center">AWWWARDS</h1>
-                </div>
-                <div class="panel-body">
-
-                    <form action="/accounts/register/"
-                          method="post">
-                        {% csrf_token %}
-                        {% bootstrap_form form %}
-                        <div class="form-group">
-                            <input type="submit"
-                                   class="btn btn-primary btn-sm"
-                                   value="Sign Up">
-                        </div>
-
-                        <input type="hidden"
-                               name="next"
-                               value="{{next}}">
-
-                    </form>
-
-                </div>
-
-            </div>
-
-        </div>
-        <!-- empty div -->
-        <div class="col-md-4"></div>
     </div>
+    <div class="col-md-4 " id="form" style="color:white;
+    font-family: sans-serif;margin-top: 20px;background: 	#000000;opacity:0.9;" >
+        <h2 style="border-bottom:6px solid #4DD0E1;margin-bottom: 10px;padding: 10px;">Sign Up</h2>
+        <form action="/accounts/register/" method="POST" style="color:#757575;" class="login-box">
+            {% csrf_token %}
+            {% bootstrap_form form layout='inline' %}
+
+            <div class="form-group">
+                <input type="submit" class="btn btn-info" value="Log In"style="text-align:center;">
+            </div>
+            <input type="hidden" name="next" value="{{next}}">
+        </form>
+    </div>
+    <div class="col-md-4"></div>
 </div>
+</div>
+</div>
+
+
+
 
 {% endblock %}
