@@ -1,79 +1,66 @@
-<nav class="navbar navbar-expand-md navbar-light bg-light">
-    <a href="/"
-       class="navbar-brand">AWWWARDS</a>
-    <button class="navbar-toggler"
-            type="button"
-            data-toggle="collapse"
-            data-target="#navbar5">
-        <span class="navbar-toggler-icon"></span>
-    </button>
-    {% if user.is_authenticated %}
+<style>
+    #brand {
+      padding: 10px;
+      padding-left: 50px;
+      margin-top: 50px;
+    }
+    #brand:hover {
+      border-bottom: 2px solid #1565C0;
+      color: #64B5F6;
+    }
+    .accounts {
+      padding: 10px;
+      color: black;
+    }
+    .accounts:hover {
+      text-decoration: underline;
+    }
+    #projects {
+      padding: 20px;
+      background: rgb(17, 90, 201);
+      top: 0;
+      color: white;
+      font-weight: bold;
+    }
+    #projects:hover {
+      background: #81D4FA;
+    }
+   
+  </style>
+  <nav style="background-color:white;" >
+    <div class="navbar mx-5">
+      <div>
+        <a href="{% url 'home' %}" id="brand"><img style="height: 50px;width: 50px;" class="rounded-circle" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRARIJs2b8r3KKXGCZZSdSa7AOR-Y_CMNlgd3zuLb7G4qd-Qb5K&s" alt=""></a>
+  
+      </div>
 
-    <div class="navbar-collapse collapse justify-content-stretch"
-         id="navbar5">
-        <ul class="navbar-nav">
-            <li class="nav-item active">
-                <a class="nav-link"
-                   href="/">Home <span class="sr-only">Home</span></a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link"
-                   href="/profile">Profile</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link"
-                   href="/logout">Logout</a>
-            </li>
-        </ul>
-        {% else %}
-
-        <ul class="navbar-nav">
-            <li class="nav-item">
-                <a class="nav-link"
-                   href="#">View Profile</a>
-            </li>
-
-            <li class="nav-item">
-                <a class="nav-link"
-                   href="/accounts/login">Login</a>
-            </li>
-        </ul>
-        {% endif %}
-
-        <form class="ml-3 my-auto d-inline w-50 float-right"
-              action="{% url 'search' %}"
-              method="GET"
-              enctype="multipart/form-data">
-            <div class="input-group">
-                <input name="q"
-                       value="{{request.GET.q}}"
-                       type="text"
-                       class="form-control border-right-0"
-                       placeholder="search">
-                <div class="input-group-append">
-                    <button class="btn btn-outline-primary border-left-0"
-                            type="submit">search</button>
-                </div>
-            </div>
+      <div class="nav-search">
+        <form class="form-inline md-form form-md active-pink active-pink-2 mt-2" action="{% url 'search_results' %}">
+          <i class="fas fa-search" aria-hidden="true"></i>
+          <input class="form-control form-control-md ml-3 w-75" type="text" placeholder="Search" aria-label="Search"
+            name="titles">
         </form>
-        <ul class="navbar-nav px-3">
-            <li class="nav-item">
-                <a class="nav-link"
-                   href="/submit">SUBMIT SITE</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link"
-                   href="/accounts/register/">Sign UP</a>
-            </li>
-        </ul>
+      </div>
+      <div class="nav-right">
         {% if user.is_authenticated %}
-
-        <ul class="navbar-nav">
-            <li class="nav-item">
-                <a class="nav-link"
-                   href="/profile"><span class="text-uppercase">{{user}}</span></a>
-            </li>
-        </ul>
-        {% endif %}
+  
+        
+            <a href="/logout/" class="accounts">Log Out</a>
+      
+          <a href="{% url 'profile' username=user %}" class="avatar">
+              <img class="rounded-circle" alt="" src="{{user.profile.profile_photo.url}}" height="60" width="60" />
+            </a>
+   
+     
+            <a href="{% url 'post_site' %}" id="projects">SUBMIT PROJECT</a>
+      
+     
+        {% else %}
+   
+    <a href="/accounts/login" class="accounts">Log In</a>
+        
+        {%  endif %}
+       
+      </div>
     </div>
-</nav>
+  </nav>
