@@ -10,6 +10,8 @@ For the full list of settings and their values, see
 https://docs.djangoproject.com/en/1.11/ref/settings/
 """
 import os
+from decouple import config, Csv
+
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
@@ -27,11 +29,15 @@ DEBUG = True
 ALLOWED_HOSTS = []
 
 
+
 # Application definition
 
 INSTALLED_APPS = [
     'sites.apps.SitesConfig',
     'bootstrap4',
+    # 'pyuploadcare.dj',
+    'crispy_forms',
+    'rest_framework',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -69,6 +75,11 @@ TEMPLATES = [
     },
 ]
 
+# UPLOADCARE = {
+#     'pub_key': 'YOUR_PUBLIC_KEY',
+#     'secret': 'YOUT_PRIVATE_KEY',
+# }
+
 WSGI_APPLICATION = 'Awwards.wsgi.application'
 
 
@@ -78,13 +89,13 @@ WSGI_APPLICATION = 'Awwards.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'awwards',
+        'NAME': 'sites',
         'USER': 'collins',
     'PASSWORD': '##@@collins1',
     }
 }
 
-# Password validation
+# # Password validation
 # https://docs.djangoproject.com/en/1.11/ref/settings/#auth-password-validators
 
 AUTH_PASSWORD_VALIDATORS = [
