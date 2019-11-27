@@ -3,17 +3,18 @@
 <script>
 new WOW().init()
 </script>
+<div style="background-image: url(https://cdn.pixabay.com/photo/2019/09/30/18/10/budapest-4516471_960_720.jpg)">
 <div class="container">
     
 <h2 class="text-muted text-center" style="font-size: 50px; font-style:oblique;font-family: 'Times New Roman', Times, serif;">UPLOADED SITES</h2>
 <hr style="color: black;">
-<div class="row" style="background-color: transparent;">
+<div class="row" style="background-color: white;">
 
 {% for project in projects %}
 <div class="col-md-4">
 <div class="card-group wow fadeInLeft"  style="margin:2%;" data-aos='fade-down'>
         <div class="view overlay zoom ">
-                <img src="{{project.image_landing.url}}" class="card-img-top">
+                <img style="height: 25vh;" src="{{project.image_landing.url}}" class="card-img-top">
                 <div class="mask flex-center rgba-black-strong">
                     <a href="{% url 'projects' project.pk %}" class="btn btn-pink" >DETAILS<i class="far fa-chevron-double-right"></i>  </a>
                 </div>
@@ -30,6 +31,7 @@ new WOW().init()
 
 </div>
 {% endfor %}
+</div>
 </div>
 </div>
 
